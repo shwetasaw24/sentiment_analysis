@@ -1,3 +1,5 @@
+# app/models.py
+
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from app.database import Base
 
@@ -7,6 +9,14 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     email = Column(String, unique=True)
     password = Column(String)
+
+
+class Product(Base):
+    __tablename__ = "products"
+    
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=True)
+    description = Column(String)
 
 
 class Feedback(Base):
@@ -20,11 +30,3 @@ class Feedback(Base):
     positive_prob = Column(Float)
     negative_prob = Column(Float)
     sentiment = Column(String)
-
-class Product(Base):
-    __tablename__ = "products"
-    
-    id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True)
-    description = Column(String)
-

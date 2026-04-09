@@ -1,19 +1,23 @@
-from app.database import SessionLocal
-from app import models
+# seed.py
+
+from database import SessionLocal
+from models import Product
 
 db = SessionLocal()
 
 products = [
     {"name": "iPhone 15", "description": "Apple smartphone"},
-    {"name": "Samsung S23", "description": "Samsung flagship phone"},
-    {"name": "Boat Headphones", "description": "Affordable audio gear"},
-    {"name": "MacBook Air", "description": "Apple lightweight laptop"}
+    {"name": "Samsung S23", "description": "Samsung flagship"},
+    {"name": "MacBook Air", "description": "Lightweight laptop"},
+    {"name": "Boat Headphones", "description": "Affordable audio device"}
 ]
 
 for p in products:
-    existing = db.query(models.Product).filter_by(name=p["name"]).first()
-    if not existing:
-        db.add(models.Product(**p))
+    exists = db.query(Product).filter_by(name=p["name"]).first()
+    if not exists:
+        db.add(Product(**p))
 
 db.commit()
-print("Products added!")
+db.close()
+
+print("✅ Products inserted successfully!")
