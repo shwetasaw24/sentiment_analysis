@@ -1,7 +1,7 @@
 # seed.py
 
-from database import SessionLocal
-from models import Product
+from app.database import SessionLocal
+from app.models import Product
 
 db = SessionLocal()
 
